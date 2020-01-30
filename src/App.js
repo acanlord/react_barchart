@@ -2,11 +2,50 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+//import './main.js';
+import metalBands from './metal_bands.json';
 
 class App extends Component {
+
+    state = {
+      albums: metalBands.metalalbums 
+    }
+
+// var i;
+// for (i = 0; i < 12; i++) {
+//   var duration = data.metalalbums[i].Minutes;
+//   // var album = data.metalalbums[i].Album;
+//   // Get Random Item from Array
+//   var album = data.metalalbums[Math.floor(Math.random()*data.metalalbums.length)].Album;
+  
+//   var divElement = document.getElementsByClassName("album"+ (i+1))[0];
+//   console.log(duration, album);
+//   var albumbutton = document.getElementById("album" + (i + 1));
+//   albumbutton.innerHTML = album;
+//   // 60 minutes = 100%
+//   // duration / 60 + 100 --> percentage
+//   var percentage = (duration / 60) * 100; 
+// //   var divHeight = duration * 10;
+//   divElement.style.width = percentage + "%";
+// } 
+
+
+
   render() {
+    var fullAlbums = this.state.albums;
+    var numberOfAlbums = 12;
+    var limitedAlbums = fullAlbums.slice(0, numberOfAlbums).map((albumid, i) => {
+      // return <li key={i}>{i}: {albumid.Album}</li>
+      return (
+        <li className="chart__bar album2">
+                  <span id="album2" className="chart__label"> 
+                  {albumid.Album}
+                  </span>
+                </li>
+      );
+  });
     return (
-     <body>
+    //  <body>
       <div className="App">
       <div className="albums">
           <ul className="lines">
@@ -40,12 +79,18 @@ class App extends Component {
             <div className="chart chart--dev">
               <span className="chart__title">Metal Albums</span>
               <ul className="chart--horiz">
-                <li className="chart__bar album1">
+              {limitedAlbums}
+              {/* {this.state.albums.map((albumid, index) => (
+                <>
+              <div>{index}: {albumid.Album}</div>
+              <div>{albumid.Duration}</div>
+              </>
+               ))} */}
+                {/* <li className="chart__bar album1">
                   <span id="album1" className="chart__label" onClick={this.refreshAlbums} >
                   </span>
                 </li>
                 <li className="chart__bar album2">
-                  {/* <span id="album2" className="chart__label" onClick="refreshAlbums()"> */}
                   <span id="album2" className="chart__label" onClick={this.refreshAlbums}> 
                   </span>
                 </li>
@@ -88,15 +133,15 @@ class App extends Component {
                 <li className="chart__bar album12">
                   <span id="album12" className="chart__label" onClick={this.refreshAlbums}> 
                   </span>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
         </div>
-        <script type="text/javascript" src="metal_bands.json"></script>
-        <script src="js/main.js"></script>
+        {/* <script type="text/javascript" src="metal_bands.json"></script> */}
+        {/* <script src="js/main.js"></script> */}
   </div>
-  </body>
+  // </body>
     ); 
   }
 }
